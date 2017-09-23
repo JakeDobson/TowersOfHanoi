@@ -18,6 +18,7 @@ class ViewController: UIViewController, SCNSceneRendererDelegate {
         
         scnView.autoenablesDefaultLighting = true
         scnView.allowsCameraControl = true
-        
+        //set scene to play
+		scnView.play(nil)
     }
 }
