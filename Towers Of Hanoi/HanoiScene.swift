@@ -67,7 +67,7 @@ class HanoiScene: SCNScene {
 	//place disk on pegs
 	func createDisks() {
 		//vars
-		var firstPeg = pegs[0]
+		let firstPeg = pegs[0]
 		var y: Float = Float(boardHeight / 2.0 + diskHeight / 2.0)
 		var radius: CGFloat = diskRadius
 		//create 4 disks via for loop
@@ -147,6 +147,22 @@ class HanoiScene: SCNScene {
 		let referenceLength = distanceBetweenVectors(v1: pegs[0].position, v2: pegs[2].position)
 		let length = distanceBetweenVectors(v1: startPostion, v2: endPostion)
 		return 0.3 * Double(length / referenceLength)
+	}
+	//reset scene to replat animation over and over and over again
+	func resetDisks(N: Int) {
+		self.numDisks = N
+		for peg in pegs {
+			peg.removeAllAnimations()
+			peg.removeFromParentNode()
+		}
+		pegs = []
+		createPegs()
+		for disk in disks {
+			disk.removeFromParentNode()
+		}
+		disks = []
+		createDisks()
+		hanoiSolver = HanoiSolver(numDisks: self.numDisks)
 	}
     //decoder init -- error handling
     required init(coder aDecoder: NSCoder) {

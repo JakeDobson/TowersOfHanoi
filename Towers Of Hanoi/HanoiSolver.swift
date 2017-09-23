@@ -2,7 +2,7 @@
 //  Towers Of Hanoi
 //  Created by Jacob Dobson on 09/18/17
 //  Copyright © 2017 Jacob Dobson. All rights reserved.
-import SceneKit
+import UIKit
 //struct -- data for animating movement of disks
 struct HanoiMove {
 	var diskIndex: Int
@@ -53,12 +53,12 @@ class HanoiSolver {
 	//func for creating 'HanoiMoves' and updating disks array, popDisk via "from" peg, pushDisk via "to" peg
 	func move(from: Int, to: Int) {
 		//vars
-		var disk = popDisk(peg: from)
-		var diskIndex = disk
-		var destinationDiskCount = pegs[to].count
+		let disk = popDisk(peg: from)
+		let diskIndex = disk
+		let destinationDiskCount = pegs[to].count
 		//push disk
 		pushDisk(disk: disk, peg: to)
-		
+		//move disks
 		let move = HanoiMove(diskIndex: diskIndex, destinationPegIndex: to, destinationDiskCount: destinationDiskCount)
 		moves.append(move)
 	}

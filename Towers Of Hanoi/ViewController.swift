@@ -6,8 +6,10 @@ import UIKit
 import SceneKit
 
 class ViewController: UIViewController, SCNSceneRendererDelegate {
-    var scene: HanoiScene!
-    
+	//outlets
+	@IBOutlet weak var numDiskLabel: UILabel!
+	//instance of HanoiScene
+	var scene: HanoiScene!
     override func viewDidLoad() {
         super.viewDidLoad()
         let scnView = self.view as! SCNView
@@ -21,4 +23,14 @@ class ViewController: UIViewController, SCNSceneRendererDelegate {
         //set scene to play
 		scnView.play(nil)
     }
+	//actions
+	@IBAction func numDisksChanged(_ sender: UIStepper) {
+		numDiskLabel.text = "\(sender.value)"
+		scene.resetDisks(N: Int(sender.value))
+		scene.playAnimation()
+	}
+	@IBAction func didTapRestart(_ sender: AnyObject) {
+		scene.resetDisks(N: scene.numDisks)
+		scene.playAnimation()
+	}
 }
