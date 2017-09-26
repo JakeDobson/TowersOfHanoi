@@ -25,7 +25,7 @@ class ViewController: UIViewController, SCNSceneRendererDelegate {
     }
 	//actions
 	@IBAction func numDisksChanged(_ sender: UIStepper) {
-		numDiskLabel.text = "\(sender.value)"
+		numDiskLabel.text = "\(Int(sender.value))"
 		scene.resetDisks(N: Int(sender.value))
 		scene.playAnimation()
 	}
